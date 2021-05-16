@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block body_content %}
+<h1>Hello {{ request.user }}!</h1>
+<p>It is {% now "jS F Y H:i:s" %}</p>
+<p>{{ my_list }}</p>
+<ul>
+    {% for list_item in my_list %}
+        {% if list_item == 1 %}
+        <li>{{ forloop.counter }} - {{ list_item }}{{ list_item }}</li>
+        {% else %}
+        <li>{{ forloop.counter }} - {{ list_item }}</li>
+        {% endif %}
+        {% cycle 'row1' 'row2' %}
+    {% endfor %}
+</ul>
+{% lorem 30 p random %}
+{% endblock %}
