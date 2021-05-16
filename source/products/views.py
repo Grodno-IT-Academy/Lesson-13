@@ -17,3 +17,20 @@ def product_detail_view(request, product_id):
         'description': product.description,
     }
     return render(request,'product.html',context=products_context)
+
+from .forms import ProductForm
+
+def add_view(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            #print(help(request))
+            #print(request.POST)
+            post = request.POST
+            Product.objects.create(name=post['name'], price=post['price'],description=post['description'], short=post['short'])
+    else:
+        form = ProductForm()
+
+    context = {'form': form}
+
+    return render(request, 'add_product.html', context=context)

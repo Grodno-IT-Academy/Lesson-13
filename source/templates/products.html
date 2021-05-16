@@ -6,9 +6,25 @@ List of Products
 {% block body_content %}
 <!-- MY Detail view of product -->
 <h2>Products List </h2>
-<ul>
+  <!--
+  <ul>
+    {% for product in products %}
+      <li><a href="#{{ product.name }}">{{ product.name }}</a></li>
+    {% endfor %}
+  </ul>
+  -->
+  <div class="row">
   {% for product in products %}
-  <li>{{ product.name }}</li>
+    <div class="col-sm">
+      <div id="{{ product.name }}" class="card mt-1" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ product.price }}</h6>
+          <p class="card-text">{{ product.short }}</p>
+          <a href="{{ product.id }}/" class="card-link">Read Description</a>
+        </div>
+      </div>
+    </div>
   {% endfor %}
-</ul>
+  </div>
 {% endblock %}
